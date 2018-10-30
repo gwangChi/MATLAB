@@ -14,15 +14,15 @@
                 
  Updated:       9/22/2018
 
- Update Details:-Removed sqrt and other redundant sqr functions.
+ Update Details:
 %}
 function dw = calcField(pos, cpos, theta, chi, y, w0, r_cyl)
 
-    rsq = (pos(1)-cpos(1))^2 + (pos(2)-cpos(2))^2;
+    r = sqrt((pos(1)-cpos(1))^2 + (pos(2)-cpos(2))^2);
     
     if r < r_cyl
         dw = 2*pi*chi*(1-y)*w0*(cos(theta)^2-1/3);
     else
-        dw = 2*pi*chi*(1-y)*w0*sin(theta)^2*r_cyl^2/rsq*((pos(1)-cpos(1))^2-(pos(2)-cpos(2))^2)/rsq;
+        dw = 2*pi*chi*(1-y)*w0*sin(theta)^2*(r_cyl/r)^2*((pos(1)-cpos(1))^2-(pos(2)-cpos(2))^2)/r^2;
     end
 end
